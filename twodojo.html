@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+	
+	<script>
+    dojoConfig= {
+        async: true
+    };
+    </script>
+	
+	<!-- This is to make sure that we set this page to refer to dojo 1.7, as how the portlet runtime default setting, 
+		we can remove this line when we deploy to portlet
+	-->
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7/dojo/dojo.js"></script>
+    
+	
+	
+	<title>Simple Map</title>
+	
+	<!-- Replace this to location of locally deployed of your own -->
+    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    
+	<style>
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    </style>
+	
+	
+	
+	<!-- We won't need this since we will specify it in the require
+    <script src="http://js.arcgis.com/3.8/"></script>
+	-->
+    
+	<script>      
+      require(
+	  {
+		packages : [     
+          // set the if we refer to esri namespace to use esri javascript API, 
+		  // and dojo namespeace in this context to use the dojo version that is inside the esri javascript API
+		  // change location to locally deployed url of your own	
+         { name: "esri", location: "http://js.arcgis.com/3.8/js/esri" },
+		 { name: "dojo", location: "http://js.arcgis.com/3.8/js/dojo/dojo" },
+		 { name: "dijit", location: "http://js.arcgis.com/3.8/js/dojo/dijit" },
+		 { name: "dojox", location: "http://js.arcgis.com/3.8/js/dojo/dojox" }
+		]
+	  }, 
+	  ["esri/map", "dojo/domReady!"], function(Map) {
+        var map = new Map("map", {
+          basemap: "topo",
+          center: [-122.45,37.75], // long, lat
+          zoom: 13,
+          sliderStyle: "small"
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
